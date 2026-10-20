@@ -98,3 +98,11 @@ export async function fetchCourseRecommendations(
     strategy: (payload.enrolledCourseIds?.length || 0) > 0 ? 'history_based' : 'curated_starter',
   };
 }
+
+export function createDebouncedQuery<T extends (...args: any[]) => void>(fn: T, delayMs: number = 300): (...args: Parameters<T>) => void {
+  let timer: any = null;
+  return (...args: Parameters<T>) => {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delayMs);
+  };
+}
