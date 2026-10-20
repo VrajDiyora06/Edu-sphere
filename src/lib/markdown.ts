@@ -41,3 +41,11 @@ export function preprocessMarkdown(raw: string): string {
   return text;
 }
 
+export function sanitizeMathDelimiters(markdown: string): string {
+  // Gracefully close trailing unclosed display math delimiters emitted by streaming LLMs
+  const countDisplay = (markdown.match(/\$\$/g) || []).length;
+  if (countDisplay % 2 !== 0) {
+    return markdown + '\n$$\n';
+  }
+  return markdown;
+}
