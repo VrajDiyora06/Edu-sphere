@@ -333,3 +333,29 @@ export async function getLessonVideoPlaybackUrl(
     };
   }
 }
+
+export interface VideoValidationResult {
+  isValid: boolean;
+  error?: string;
+}
+
+export function validateVideoFile(file: File): VideoValidationResult {
+  const allowedMimeTypes = ['video/mp4', 'video/webm', 'video/ogg'];
+  const maxSizeBytes = 500 * 1024 * 1024; // 500 MB
+
+  if (!allowedMimeTypes.includes(file.type)) {
+    return {
+      isValid: false,
+      error: `Unsupported format (${file.type || 'unknown'}). Allowed: MP4, WebM, OGG.`
+    };
+  }
+
+  if (file.size > maxSizeBytes) {
+    return {
+      isValid: false,
+      error: `File size exceeds 500 MB limit (current: ${(file.size / (1024 * 1024)).toFixed(1)} MB).`
+    };
+  }
+
+  return { isValid: true };
+}
