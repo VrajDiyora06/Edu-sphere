@@ -1,32 +1,60 @@
-# React + TypeScript + Vite
+# EduSphere - Learning Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+EduSphere is a full-stack learning management platform designed for students, instructors, and administrators. Built with React 19, TypeScript, Vite, Tailwind CSS, and Supabase.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Role-Based Access Control**: Tailored experiences for Students, Instructors, and Platform Admins.
+- **Academic Catalog**: Curated course tracks spanning AI & Emerging Technologies, Computer Science, Engineering, Mathematics, and Professional Skills.
+- **Student Dashboard**: Track course progress, manage enrolled curriculums, and generate completion certificates.
+- **Interactive Lessons**: Video lecture streaming with an integrated AI Doubt Assistant supporting LaTeX math and Markdown rendering.
+- **Quizzes & Assignments**: Auto-graded assessments with passing score thresholds, plus file attachment submissions for project coursework.
+- **Instructor Studio**: Comprehensive course authoring environment to manage modules, lessons, quizzes, and grade submissions.
+- **Admin Portal**: System diagnostics, user role administration, and catalog maintenance with Row-Level Security (RLS) enforcement.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19, TypeScript, Vite, Tailwind CSS v4, Lucide Icons
+- **Markdown & Math**: KaTeX, react-markdown, remark-math, rehype-katex
+- **Backend & Database**: Supabase (PostgreSQL, Row-Level Security, Storage Buckets, Triggers)
+- **AI Engine**: Google Gemini 1.5 Flash tutor integration via Vite server proxy
+- **Linting**: Oxlint
 
-## Expanding the Oxlint configuration
+## Getting Started
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+### Prerequisites
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+- Node.js (v18 or higher)
+- npm or yarn
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/VrajDiyora06/Edu-sphere.git
+   cd Edu-sphere
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Configure environment variables:
+   Copy `.env.example` to `.env` and fill in your Supabase credentials:
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Run database migrations:
+   Apply the SQL files in `supabase/migrations/` sequentially to your Supabase project.
+
+5. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Contributors
+
+- **Jenil Gabani** - [23BCE076@nirmauni.ac.in](mailto:23BCE076@nirmauni.ac.in)
+- **Vraj Diyora** - [diyoravraj@gmail.com](mailto:diyoravraj@gmail.com)
