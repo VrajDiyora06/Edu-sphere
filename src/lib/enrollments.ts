@@ -316,3 +316,11 @@ export async function updateEnrollmentProgress(
     return { success: false, data: null, error: err instanceof Error ? err : new Error(String(err)) };
   }
 }
+
+export function verifyActiveStudentAccess(enrollment: { status?: string; is_active?: boolean } | null): boolean {
+  if (!enrollment) return false;
+  if (typeof enrollment.is_active === 'boolean') {
+    return enrollment.is_active;
+  }
+  return enrollment.status === 'active' || enrollment.status === 'enrolled' || enrollment.status === 'completed';
+}

@@ -348,3 +348,30 @@ export async function getQuizAttemptsForInstructor(
     return { data: [], error: err instanceof Error ? err : new Error(String(err)) };
   }
 }
+
+export interface QuizQuestionReviewItem {
+  questionId: string;
+  questionText: string;
+  selectedChoiceId?: string;
+  correctChoiceId?: string;
+  isCorrect: boolean;
+  explanation?: string;
+}
+
+export function buildQuizReviewSummary(
+  questions: Array<{ id: string; question_text: string; explanation?: string; choices: Array<{ id: string; is_correct: boolean }> }>,
+  userAnswers: Record<string, string>
+): QuizQuestionReviewItem[] {
+  return questions.map((q) => {
+    const selected = userAnswers[q.id];
+    const correct = q.choices.find((c) => c.is_correct)?.id;
+    return {
+      questionId: q.id,
+      questionText: q.question_text,
+      selectedChoiceId: selected,
+      correctChoiceId: correct,
+      isCorrect: selected !== undefined && selected === correct,
+      explanation: q.explanation
+    };
+  });
+}
